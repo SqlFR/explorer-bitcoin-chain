@@ -1,12 +1,12 @@
 from Block import Block
-from Block import BlockError, BlockNotFoundError, RpcError
+from errors import BlockError, BlockNotFoundError, RpcError
 
 
 def main() -> None:
-    bloc = Block('00000000000200000000000000000f3676e3625d39fc68628e23d575677bf7b0b')
+    bloc = Block('000000000000000000012a990314cebe57aa81d1a7117c63d890a530c5dac191')
 
     try:
-        print(bloc.get_block())
+        print(bloc.get_blockstats())
     except BlockNotFoundError as e:
         print(e)
     except RpcError as e:
