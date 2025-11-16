@@ -1,3 +1,4 @@
+# Block
 class BlockError(Exception):
     """Erreur générique liée aux opérations sur un bloc."""
 
@@ -6,3 +7,8 @@ class BlockNotFoundError(BlockError):
 
 class RpcError(BlockError):
     """Erreur renvoyée par le nœud RPC."""
+
+# Hash
+class HashError(Exception):
+    """Erreur générique liée aux opérations sur un hash."""
+

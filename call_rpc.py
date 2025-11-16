@@ -8,6 +8,7 @@ def call_rpc(hash_block: str, method: str, params: list[str]) -> dict:
     Appelle le RPC sous-jacent, gère les erreurs réseau/HTTP et normalise
     les erreurs JSON-RPC en exceptions métier BlockError.
 
+    :param hash_block: Hash du bloc
     :param method: Nom de la méthode JSON-RPC (ex: "getblock").
     :param params: Paramètres passés à la méthode RPC.
     :return: Champ "result" de la réponse JSON-RPC.
