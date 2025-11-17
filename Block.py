@@ -1,12 +1,17 @@
 from call_rpc import call_rpc
+from HashBase import HashBase
 
 class Block:
     """Représentation d'un bloc Bitcoin identifié par son hash."""
-    def __init__(self, hash_block: str) -> None:
+    def __init__(self, hash_block: HashBase) -> None:
         """
-        :param hash_block: Hash du bloc (chaîne hexadécimale).
+        :param hash_block: Hash du bloc.
         """
         self.hash_block = hash_block
+
+    def _hex(self):
+        """Hash sous ferme hexadécimal."""
+        return self.hash_block.to_hex()
 
     def get_block(self, verbosity: int=0) -> dict:
         """
@@ -15,15 +20,15 @@ class Block:
         :param verbosity: Niveau de détail (0, 1 ou 2 selon l'API).
         :return: Réponse JSON sous forme de dict.
         """
-        return call_rpc(self.hash_block,'getblock', [self.hash_block, verbosity])
+        return call_rpc(self._hex(),'getblock', [self._hex(), verbosity])
 
     def get_blockhash(self) -> str:
         """Retourne le hash du bloc."""
-        return self.hash_block
+        return self._hex()
 
     def get_blockheader(self) -> dict:
         """Retourne le header du bloc."""
-        return call_rpc(self.hash_block,"getblockheader", [self.hash_block])
+        return call_rpc(self._hex(),"getblockheader", [self._hex()])
 
     def get_blockstats(self, values: str | list[str] | None=None) -> dict:
         """
@@ -35,4 +40,4 @@ class Block:
         if not values:
             values = []
 
-        return call_rpc(self.hash_block,"getblockstats", [self.hash_block, values])
+        return call_rpc(self._hex(),"getblockstats", [self._hex(), values])
