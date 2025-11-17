@@ -1,5 +1,3 @@
-from urllib3.util.util import to_str
-
 from errors import HashError
 
 class HashBase:
@@ -19,8 +17,11 @@ class HashBase:
     def from_hex(cls, hex_str: str):
         try:
             raw = bytes.fromhex(hex_str)
+        except NameError as e :
+            raise HashError(f'Le hash doit contenir 64 caractères -- ({e})')
         except ValueError as e :
             raise HashError(f'Le hash doit contenir 64 caractères -- ({e})')
+
         return cls(raw)
 
     def __str__(self):

@@ -38,7 +38,7 @@ def _get_env(name: str, default: str | None = None) -> str:
 
 # Configuration RPC
 RPC_CONFIG: dict[str, str] = {
-    'rpc_user': _get_env("BITCOIN_RPC_USER", 'sql'),
+    'rpc_user': _get_env("BITCOIN_RPC_USER", 'main'),
     'rpc_password': _get_env("BITCOIN_RPC_PASSWORD"),
     'rpc_host': _get_env("BITCOIN_RPC_HOST",'192.168.2.57'),
     'rpc_port': _get_env("BITCOIN_RPC_PORT",'8332'),
