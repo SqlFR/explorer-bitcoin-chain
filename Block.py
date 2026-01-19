@@ -40,4 +40,4 @@ class Block:
         if not values:
             values = []
 
-        return call_rpc(self._hex(),"getblockstats", [self._hex(), values])
+        return call_rpc(self._hex(),"getblockstats", [self._hex(), [values]])

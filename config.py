@@ -8,7 +8,6 @@ def _load_env_file(path: str = ENV_FILE_PATH) -> None:
     Charge les variables d'environnement depuis un fichier de type:
         KEY=VALUE
     Les variables déjà présentes dans os.environ NE sont PAS écrasées.
-    Les lignes vides ou commentées (# ...) sont ignorées.
     """
     if not os.path.exists(path):
         return
