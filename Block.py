@@ -13,31 +13,30 @@ class Block:
         """Hash sous ferme hexadécimal."""
         return self.hash_block.to_hex()
 
-    def get_block(self, verbosity: int=0) -> dict:
+    def get_block(self, verbosity: int=0):
         """
         Retourne les données du bloc.
 
         :param verbosity: Niveau de détail (0, 1 ou 2 selon l'API).
         :return: Réponse JSON sous forme de dict.
         """
-        return call_rpc(self._hex(),'getblock', [self._hex(), verbosity])
+        return call_rpc('getblock', [self._hex(), verbosity])
 
     def get_blockhash(self) -> str:
-        """Retourne le hash du bloc."""
         return self._hex()
 
-    def get_blockheader(self) -> dict:
-        """Retourne le header du bloc."""
-        return call_rpc(self._hex(),"getblockheader", [self._hex()])
+    def get_blockheader(self):
+        return call_rpc("getblockheader", [self._hex()])
 
-    def get_blockstats(self, values: str | list[str] | None=None) -> dict:
+    def get_blockstats(self, values: str | list[str] | None = None):
         """
-        Retourne les statistiques du bloc.
-
         :param values: Liste de champs spécifiques à demander, ou None pour tous.
         :return: Réponse JSON sous forme de dict.
         """
-        if not values:
-            values = []
+        if values is None:
+            return call_rpc("getblockstats", [self._hex()])
 
-        return call_rpc(self._hex(),"getblockstats", [self._hex(), [values]])
+        if isinstance(values, str):
+            values = [values]
+
+        return call_rpc("getblockstats", [self._hex(), values])

@@ -14,7 +14,7 @@ def main() -> None:
     bloc = Block(hash1)
 
     try:
-        print(bloc.get_blockstats("avgtxsize"))
+        print(bloc.get_blockstats('blockhash'))
     except BlockNotFoundError as blocknotfound_error:
         print('BlockNotFoundError : ', blocknotfound_error)
     except RpcError as rpc_error:

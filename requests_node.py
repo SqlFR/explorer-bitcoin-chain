@@ -13,6 +13,7 @@ def send_rpc_request(payload) -> dict:
     :raises requests.exceptions.RequestException: en cas d'erreur réseau/HTTP.
     """
     url = f"http://{RPC_CONFIG['rpc_host']}:{RPC_CONFIG['rpc_port']}/"
+    print("payload : ", payload)
     # Met a jour le payload
     payload = {"jsonrpc": "1.0", "id": "py"} | payload
 
